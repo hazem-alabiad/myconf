@@ -21,5 +21,7 @@ if [ -z "$(ls -A ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlight
 fi
 # copy zsh terminal settings
 cp .zshrc ~/
-
+# install yarn via npm
+npm install --global yarn
+yarn --version
 
