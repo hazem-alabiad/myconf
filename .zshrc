@@ -8,7 +8,10 @@ export DEFAULT_USER="$(whoami)"
 export HOME=/home
 
 # Change default directory
-cd ~
+#cd ~
+
+# Alias to prevent high mem usage
+alias drop_cache="sudo sh -c \"echo 3 >'/proc/sys/vm/drop_caches' && swapoff -a && swapon -a && printf '\n%s\n' 'Ram-cache and Swap Cleared'\""
 
 # Path to your oh-my-zsh installation.
 export ZSH="/root/.oh-my-zsh"
