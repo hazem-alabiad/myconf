@@ -5,7 +5,7 @@
 export DEFAULT_USER="$(whoami)"
 
 # Change $HOME env var
-export HOME=/home
+export HOME=/root
 
 # Change default directory
 #cd ~
@@ -20,7 +20,7 @@ export ZSH="/root/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="spaceship"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -82,7 +82,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git pep8 docker python vscode node gitignore pip redis-cli sudo yarn heroku zsh-syntax-highlighting)
+plugins=(git pep8 docker docker-compose python vscode node gitignore pip redis-cli sudo yarn heroku zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -111,3 +111,11 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+fix_wsl2_interop() {
+  for i in $(pstree -np -s $$ | grep -o -E '[0-9]+'); do
+    if [[ -e "/run/WSL/${i}_interop" ]]; then
+      export WSL_INTEROP=/run/WSL/${i}_interop
+    fi
+  done
+}
